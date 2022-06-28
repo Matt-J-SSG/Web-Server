@@ -10,10 +10,6 @@ app.get('/', function (req, res) {
     res.sendFile(path.resolve("Pages/index.html"))
 })
 
-app.get('/bbc', function (req, res) {
-    res.sendFile(path.resolve("Pages/bbchome.html"))
-})
-
 app.get('/test', function (req, res) {
     res.send('Hello Test')
 })
