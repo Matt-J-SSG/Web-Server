@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matt J Weather</title>
+    <script>
+        async function GetAPI() {
+            const CityName = document.getElementById("citybox").value
+            const data = await fetch("/api?city=" + encodeURIComponent(CityName))
+            const temp = await data.text()
+            console.log(temp)
+            document.getElementById("wethHold").style.display = "block"
+            document.getElementById("weather").innerHTML = temp
+        }
+    </script>
+    <style>
+        body {
+            margin: 0;
+            background-attachment: fixed;
+        }
+
+        .parent {
+            display: grid;
+            place-items: center;
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+        }
+
+        .child {
+            text-align: center;
+            background-color: rgba(255, 255, 255, .25);   
+            width: 30rem;
+            height: 10rem;
+            border-radius: 5px;
+            box-shadow: 0 0 2rem 0 rgba(0, 0, 0, .2); 
+        }
+
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="parent">
+        <div class="child">
+            <h1>Matt's Weather App</h1>
+            <input id="citybox" placeholder="Enter your city...">
+            <button onclick="GetAPI()">Get Temp</button>
+            <h2 id="wethHold" style="display: none">Current temperature: <span id="weather"></span></h2>
+        </div>
+    </div>
+</body>
+
+</html>
